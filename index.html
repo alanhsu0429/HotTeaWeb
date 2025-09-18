@@ -110,6 +110,25 @@
             z-index: 1;
         }
 
+        .footer {
+            position: absolute;
+            bottom: 1rem;
+            right: 1rem;
+            z-index: 10;
+        }
+
+        .privacy-link {
+            color: #666;
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 0.02em;
+            transition: color 0.3s ease;
+        }
+
+        .privacy-link:hover {
+            color: #FF8C00;
+        }
+
         @media (max-width: 768px) {
             .logo {
                 width: 220px;
@@ -181,6 +200,9 @@
             </a>
         </div>
         <img src="listenweb.png" alt="People listening" class="bottom-image">
+        <div class="footer">
+            <a href="privacy.html" class="privacy-link">隱私權政策</a>
+        </div>
     </div>
 
     <script>
