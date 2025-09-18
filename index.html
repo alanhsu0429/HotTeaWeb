@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HotTea 🍵 - AI驅動的新聞對話生成器</title>
+    <meta name="description" content="將枯燥新聞轉換為群組八卦對話的Chrome擴充程式">
+    <meta name="keywords" content="Chrome擴充功能,AI新聞,對話生成,群聊,八卦">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap');
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #F9F9F9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            position: absolute;
+            top: 30%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            text-align: center;
+            z-index: 10;
+            max-width: 90%;
+        }
+
+        .cta-container {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10;
+        }
+
+        .logo {
+            width: 280px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        .tagline {
+            font-size: 1.2rem;
+            font-weight: 400;
+            color: #333333;
+            margin-bottom: 1rem;
+            line-height: 1.4;
+            letter-spacing: 0.05em;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #666666;
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ffffff;
+            color: #ff6b35;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: 2px solid #FF8C00;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+            background: #f8f8f8;
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .bottom-image {
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: auto;
+            height: 50vh;
+            object-fit: cover;
+            z-index: 1;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 220px;
+                margin-bottom: 1.5rem;
+            }
+
+            .tagline {
+                font-size: 1rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 180px;
+            }
+
+            .tagline {
+                font-size: 0.9rem;
+            }
+
+            .subtitle {
+                font-size: 0.8rem;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.8rem;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .logo {
+                width: 320px;
+            }
+
+            .tagline {
+                font-size: 1.4rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <img src="HotTea.svg" alt="HotTea Logo" class="logo">
+            <h1 class="tagline">將枯燥的新聞轉換為有趣的聊天室吃瓜現場</h1>
+        </div>
+        <div class="cta-container">
+            <a href="https://chromewebstore.google.com/detail/moomcmpkellcnbpcbfdoknafcmfciedm?utm_source=item-share-cb"
+               target="_blank"
+               rel="noopener noreferrer"
+               class="cta-button">
+                立即安裝 Chrome 擴充功能
+            </a>
+        </div>
+        <img src="listenweb.png" alt="People listening" class="bottom-image">
+    </div>
+
+    <script>
+        // 添加按鈕點擊追蹤（可選）
+        document.querySelector('.cta-button').addEventListener('click', function() {
+            // Google Analytics 或其他追蹤代碼可以在這裡添加
+            console.log('CTA button clicked');
+        });
+
+        // 鍵盤快捷鍵支援
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Enter' || e.key === ' ') {
+                document.querySelector('.cta-button').click();
+            }
+        });
+    </script>
+</body>
+</html>
