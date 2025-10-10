@@ -1,0 +1,38 @@
+# Cloudflare Pages 標頭配置
+# 優化緩存策略和安全性，不影響介面呈現
+
+# 所有頁面的安全標頭
+/*
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  X-XSS-Protection: 1; mode=block
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: interest-cohort=()
+
+# HTML 文件 - 短期緩存，確保更新快速生效
+/*.html
+  Cache-Control: public, max-age=3600, must-revalidate
+
+# 圖片資源 - 長期緩存（1年）
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.jpeg
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+
+# 字體文件 - 長期緩存（1年）
+/*.woff
+  Cache-Control: public, max-age=31536000, immutable
+
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable
+
+# 首頁 - 較短緩存
+/
+  Cache-Control: public, max-age=1800, must-revalidate
