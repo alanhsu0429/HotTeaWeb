@@ -1,0 +1,36 @@
+{
+  "name": "HotTea - AI 新聞對話生成器",
+  "short_name": "HotTea",
+  "description": "運用 Google Gemini AI 將枯燥的新聞文章轉換為生動有趣的朋友群組聊天對話",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F9F9F9",
+  "theme_color": "#FF8C00",
+  "orientation": "portrait-primary",
+  "categories": ["productivity", "news", "entertainment"],
+  "lang": "zh-TW",
+  "dir": "ltr",
+  "icons": [
+    {
+      "src": "HotTea.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "HotTea3.png",
+      "sizes": "1200x630",
+      "type": "image/png",
+      "label": "HotTea 介面展示"
+    }
+  ],
+  "related_applications": [
+    {
+      "platform": "chrome_web_store",
+      "url": "https://chromewebstore.google.com/detail/moomcmpkellcnbpcbfdoknafcmfciedm",
+      "id": "moomcmpkellcnbpcbfdoknafcmfciedm"
+    }
+  ]
+}

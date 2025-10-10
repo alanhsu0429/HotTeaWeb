@@ -8,8 +8,8 @@ Allow: /
 Allow: /index.html
 Allow: /privacy.html
 
-# 網站地圖（未來可添加）
-# Sitemap: https://your-domain.pages.dev/sitemap.xml
+# 網站地圖
+Sitemap: https://alanhsu0429.github.io/HotTeaWeb/sitemap.xml
 
 # 爬取延遲（禮貌性設定）
 Crawl-delay: 1
