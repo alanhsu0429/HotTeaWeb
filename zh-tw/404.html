@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>找不到頁面 - HotTea 🍵</title>
+    <meta name="description" content="HotTea - 頁面未找到">
+
+    <!-- hreflang for Multi-language Support -->
+    <link rel="alternate" hreflang="en" href="https://hottea.app/404.html" />
+    <link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/404.html" />
+    <link rel="alternate" hreflang="x-default" href="https://hottea.app/404.html" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap');
+
+        html, body {
+            height: 100%;
+            overflow: hidden;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            background: #F9F9F9;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            text-align: center;
+            z-index: 10;
+            max-width: 90%;
+        }
+
+        .logo {
+            width: 200px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        .error-code {
+            font-size: 6rem;
+            font-weight: 700;
+            color: #FF8C00;
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .error-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #333333;
+            margin-bottom: 1rem;
+            letter-spacing: 0.05em;
+        }
+
+        .error-message {
+            font-size: 1rem;
+            color: #666666;
+            margin-bottom: 2.5rem;
+            line-height: 1.5;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: #ffffff;
+            color: #ff6b35;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 400;
+            font-size: 1rem;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+            transition: all 0.3s ease;
+            border: 2px solid #FF8C00;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(0,0,0,0.25);
+            background: #f8f8f8;
+        }
+
+        .cta-button:active {
+            transform: translateY(0);
+        }
+
+        .cta-button.secondary {
+            background: transparent;
+            color: #666;
+            border-color: #999;
+        }
+
+        .cta-button.secondary:hover {
+            background: #f8f8f8;
+            border-color: #666;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 1rem;
+            text-align: center;
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .logo {
+                width: 150px;
+                margin-bottom: 1.5rem;
+            }
+
+            .error-code {
+                font-size: 4rem;
+            }
+
+            .error-title {
+                font-size: 1.2rem;
+                margin-bottom: 0.8rem;
+            }
+
+            .error-message {
+                font-size: 0.9rem;
+                margin-bottom: 2rem;
+            }
+
+            .cta-button {
+                padding: 0.8rem 2rem;
+                font-size: 0.9rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .cta-button {
+                width: 80%;
+                max-width: 300px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo {
+                width: 120px;
+            }
+
+            .error-code {
+                font-size: 3rem;
+            }
+
+            .error-title {
+                font-size: 1rem;
+            }
+
+            .error-message {
+                font-size: 0.85rem;
+            }
+
+            .cta-button {
+                padding: 0.7rem 1.8rem;
+                font-size: 0.85rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <img src="../images/HotTea.svg" alt="HotTea Logo" class="logo">
+            <div class="error-code">404</div>
+            <h1 class="error-title">找不到頁面</h1>
+            <p class="error-message">抱歉，您訪問的頁面不存在<br>或已經被移除了</p>
+
+            <div class="button-group">
+                <a href="../index.html" class="cta-button">返回首頁</a>
+                <a href="https://chromewebstore.google.com/detail/moomcmpkellcnbpcbfdoknafcmfciedm?utm_source=item-share-cb"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="cta-button secondary">
+                    安裝 Chrome 擴充功能
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 HotTea. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // 自動記錄 404 錯誤（用於除錯）
+        console.log('404 Error - Page not found:', window.location.href);
+
+        // 可選：發送錯誤追蹤（如果有分析工具）
+        // 例如：ga('send', 'event', '404', window.location.pathname);
+    </script>
+</body>
+</html>
