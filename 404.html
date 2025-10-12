@@ -1,10 +1,15 @@
 <!DOCTYPE html>
-<html lang="zh-TW">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>找不到頁面 - HotTea 🍵</title>
-    <meta name="description" content="HotTea - 頁面未找到">
+    <title>Page Not Found - HotTea 🍵</title>
+    <meta name="description" content="HotTea - Page Not Found">
+
+    <!-- hreflang for Multi-language Support -->
+    <link rel="alternate" hreflang="en" href="https://hottea.app/404.html" />
+    <link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/404.html" />
+    <link rel="alternate" hreflang="x-default" href="https://hottea.app/404.html" />
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
@@ -17,12 +22,12 @@
             box-sizing: border-box;
         }
 
-        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap');
 
         html, body {
             height: 100%;
             overflow: hidden;
-            font-family: 'Noto Sans TC', sans-serif;
+            font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
         }
 
         .container {
@@ -189,16 +194,16 @@
         <div class="content">
             <img src="images/HotTea.svg" alt="HotTea Logo" class="logo">
             <div class="error-code">404</div>
-            <h1 class="error-title">找不到頁面</h1>
-            <p class="error-message">抱歉，您訪問的頁面不存在<br>或已經被移除了</p>
+            <h1 class="error-title">Page Not Found</h1>
+            <p class="error-message">Sorry, the page you're looking for doesn't exist<br>or has been removed</p>
 
             <div class="button-group">
-                <a href="index.html" class="cta-button">返回首頁</a>
+                <a href="index.html" class="cta-button">Back to Home</a>
                 <a href="https://chromewebstore.google.com/detail/moomcmpkellcnbpcbfdoknafcmfciedm?utm_source=item-share-cb"
                    target="_blank"
                    rel="noopener noreferrer"
                    class="cta-button secondary">
-                    安裝 Chrome 擴充功能
+                    Install Chrome Extension
                 </a>
             </div>
         </div>
@@ -209,11 +214,11 @@
     </div>
 
     <script>
-        // 自動記錄 404 錯誤（用於除錯）
+        // Automatic 404 error logging (for debugging)
         console.log('404 Error - Page not found:', window.location.href);
 
-        // 可選：發送錯誤追蹤（如果有分析工具）
-        // 例如：ga('send', 'event', '404', window.location.pathname);
+        // Optional: Send error tracking (if analytics tools are available)
+        // Example: ga('send', 'event', '404', window.location.pathname);
     </script>
 </body>
 </html>
