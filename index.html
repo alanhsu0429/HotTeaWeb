@@ -195,38 +195,35 @@
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap');
 
         html, body {
-            height: 100%;
-            overflow: hidden;
+            min-height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
             font-family: 'Noto Sans TC', sans-serif;
         }
 
         .container {
             position: relative;
             width: 100%;
-            height: 100vh;
+            min-height: 100vh;
             background: #F9F9F9;
             display: flex;
             flex-direction: column;
-            justify-content: center;
             align-items: center;
         }
 
         .content {
-            position: absolute;
-            top: 30%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
             text-align: center;
             z-index: 10;
             max-width: 90%;
+            margin-top: 8vh;
+            margin-bottom: 2rem;
         }
 
         .cta-container {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            position: relative;
             z-index: 10;
+            margin-bottom: 3rem;
         }
 
         .logo {
@@ -279,20 +276,252 @@
         }
 
         .bottom-image {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            object-fit: cover;
+            z-index: 1;
+            margin: 2rem auto;
+        }
+
+        /* 內容區塊樣式 */
+        .content-sections {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            background: white;
+            padding: 3rem 2rem;
+            z-index: 10;
+            margin: 2rem auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .content-sections section {
+            margin-bottom: 4rem;
+        }
+
+        .content-sections section:last-child {
+            margin-bottom: 0;
+        }
+
+        .content-sections h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        .content-sections h2::after {
+            content: '';
             position: absolute;
             bottom: 0;
             left: 50%;
             transform: translateX(-50%);
-            width: auto;
-            height: 50vh;
-            object-fit: cover;
-            z-index: 1;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(90deg, #FF8C00, #FFA500);
+            border-radius: 2px;
+        }
+
+        /* 功能特色區塊 */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            border-radius: 12px;
+            background: #F9F9F9;
+            transition: all 0.3s ease;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.15);
+            background: white;
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .feature-item p {
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* 使用步驟區塊 */
+        .steps-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            text-align: center;
+            padding: 2rem 1.5rem;
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFF 100%);
+            border-radius: 12px;
+            border: 2px solid #FFE8D1;
+            transition: all 0.3s ease;
+        }
+
+        .step-item:hover {
+            border-color: #FF8C00;
+            transform: scale(1.02);
+        }
+
+        .step-number {
+            width: 50px;
+            height: 50px;
+            margin: 0 auto 1rem;
+            background: linear-gradient(135deg, #FF8C00, #FFA500);
+            color: white;
+            font-size: 1.5rem;
+            font-weight: 700;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 10px rgba(255, 140, 0, 0.3);
+        }
+
+        .step-item h3 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 0.8rem;
+        }
+
+        .step-item p {
+            font-size: 0.95rem;
+            color: #666;
+            line-height: 1.6;
+        }
+
+        /* FAQ 區塊 */
+        .faq-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .faq-item {
+            background: #F9F9F9;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            padding: 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .faq-item:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+        }
+
+        .faq-item summary {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #333;
+            cursor: pointer;
+            list-style: none;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-item summary::after {
+            content: '+';
+            font-size: 1.5rem;
+            color: #FF8C00;
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item[open] summary::after {
+            content: '−';
+            transform: rotate(180deg);
+        }
+
+        .faq-item p {
+            margin-top: 1rem;
+            font-size: 1rem;
+            color: #666;
+            line-height: 1.7;
+        }
+
+        .faq-item a {
+            color: #FF8C00;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .faq-item a:hover {
+            text-decoration: underline;
+        }
+
+        /* 用戶評價區塊 */
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-item {
+            background: linear-gradient(135deg, #FFF8F0 0%, #FFF 100%);
+            padding: 2rem;
+            border-radius: 12px;
+            border-left: 4px solid #FF8C00;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+            transition: all 0.3s ease;
+        }
+
+        .testimonial-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.12);
+        }
+
+        .rating {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: #333;
+            line-height: 1.7;
+            margin-bottom: 1rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            font-size: 0.9rem;
+            color: #999;
+            text-align: right;
         }
 
         .footer {
-            position: absolute;
-            bottom: 1rem;
-            right: 1rem;
+            position: relative;
+            width: 100%;
+            text-align: center;
+            padding: 2rem 1rem;
             z-index: 10;
         }
 
@@ -328,6 +557,33 @@
                 padding: 0.8rem 2rem;
                 font-size: 0.9rem;
             }
+
+            .content-sections {
+                padding: 2rem 1.5rem;
+            }
+
+            .content-sections h2 {
+                font-size: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .steps-container {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .feature-item, .step-item, .testimonial-item {
+                padding: 1.5rem 1rem;
+            }
         }
 
         @media (max-width: 480px) {
@@ -346,6 +602,28 @@
             .cta-button {
                 padding: 0.7rem 1.8rem;
                 font-size: 0.85rem;
+            }
+
+            .content-sections {
+                padding: 1.5rem 1rem;
+                margin: 1rem auto;
+            }
+
+            .content-sections h2 {
+                font-size: 1.3rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .feature-icon {
+                font-size: 2.5rem;
+            }
+
+            .feature-item h3, .step-item h3 {
+                font-size: 1.1rem;
+            }
+
+            .feature-item p, .step-item p, .faq-item p {
+                font-size: 0.9rem;
             }
         }
 
@@ -379,6 +657,135 @@
             </a>
         </div>
         <img src="images/listenweb.png" alt="People listening" class="bottom-image" loading="lazy">
+
+        <!-- 內容區塊 -->
+        <div class="content-sections">
+            <!-- 為什麼選擇 HotTea -->
+            <section class="feature-section">
+                <h2>為什麼選擇 HotTea？</h2>
+                <div class="features-grid">
+                    <div class="feature-item">
+                        <div class="feature-icon">🤖</div>
+                        <h3>AI 智能轉換</h3>
+                        <p>運用 Google Gemini AI 先進技術，將冗長複雜的新聞文章轉換為生動有趣的聊天對話。不用再逐字閱讀，像在看朋友群組聊天一樣輕鬆理解新聞重點。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎭</div>
+                        <h3>角色頭像整合</h3>
+                        <p>自動從維基百科抓取新聞人物的真實頭像，讓對話更加生動逼真。每個角色都有專屬頭像，彷彿真實人物在你面前對話，增添閱讀趣味。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">💬</div>
+                        <h3>智能問答互動</h3>
+                        <p>不只是轉換，還能與 AI 進行深度問答。對新聞內容有疑問？直接提問，AI 會基於文章內容為您解答，讓您更全面理解新聞背景與細節。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🌐</div>
+                        <h3>支援 40+ 新聞網站</h3>
+                        <p>涵蓋台灣主流媒體包括 Yahoo 新聞、聯合新聞網、自由時報、ETtoday、三立新聞、TVBS、中時新聞網等，無論您習慣閱讀哪個新聞網站都能使用。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">⚡</div>
+                        <h3>一鍵快速生成</h3>
+                        <p>只需點擊「我要吃瓜」按鈕，數秒內完成轉換。不需要複製貼上，不需要離開頁面，直接在原新聞網站上即時生成對話內容。</p>
+                    </div>
+                    <div class="feature-item">
+                        <div class="feature-icon">🎁</div>
+                        <h3>完全免費使用</h3>
+                        <p>無需付費、無需訂閱，安裝後立即使用。每日提供充足的使用配額，讓您盡情享受創新的新聞閱讀體驗，輕鬆掌握時事動態。</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 如何使用 HotTea -->
+            <section class="how-to-section">
+                <h2>如何使用 HotTea？</h2>
+                <div class="steps-container">
+                    <div class="step-item">
+                        <div class="step-number">1</div>
+                        <h3>安裝擴充功能</h3>
+                        <p>前往 Chrome 線上應用程式商店，搜尋「HotTea」或點擊本頁面的安裝按鈕，一鍵加入 Chrome 瀏覽器。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">2</div>
+                        <h3>登入 Google 帳號</h3>
+                        <p>使用您的 Google 帳號安全登入，我們採用 OAuth 2.0 認證機制，絕不儲存您的密碼。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">3</div>
+                        <h3>瀏覽新聞網站</h3>
+                        <p>打開任何支援的新聞網站（如 Yahoo 新聞、聯合新聞網等），選擇您感興趣的新聞文章。</p>
+                    </div>
+                    <div class="step-item">
+                        <div class="step-number">4</div>
+                        <h3>點擊「我要吃瓜」</h3>
+                        <p>點擊 HotTea 擴充功能圖示或頁面上的按鈕，AI 會立即將新聞轉換為對話形式，開始您的輕鬆閱讀之旅！</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 常見問題 FAQ -->
+            <section class="faq-section">
+                <h2>常見問題</h2>
+                <div class="faq-container">
+                    <details class="faq-item">
+                        <summary>HotTea 是什麼？</summary>
+                        <p>HotTea 是一款免費的 Chrome 瀏覽器擴充功能，使用 Google Gemini AI 技術將傳統新聞文章轉換成有趣的聊天室對話形式，讓閱讀新聞變得像朋友聊天一樣輕鬆有趣。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>HotTea 支援哪些新聞網站？</summary>
+                        <p>HotTea 支援超過 40 個主流新聞網站，包括 Yahoo 新聞、聯合新聞網、自由時報、ETtoday、三立新聞、TVBS、中時新聞網等台灣主要媒體，涵蓋政治、社會、科技、娛樂等各類新聞。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>HotTea 需要付費嗎？</summary>
+                        <p>HotTea 完全免費使用！安裝後即可享受 AI 新聞對話生成功能，無需訂閱或付費。每位使用者每日有使用配額，足夠一般閱讀需求。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>HotTea 如何保護我的隱私？</summary>
+                        <p>HotTea 非常重視使用者隱私。我們僅在您點擊「我要吃瓜」時讀取當前新聞頁面內容，不會收集您的瀏覽歷史、密碼或其他敏感資訊。所有資料處理都透過加密連線進行，並使用 Google OAuth 2.0 安全認證。詳細說明請參閱我們的<a href="privacy.html">隱私權政策</a>。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>HotTea 生成的對話可以分享嗎？</summary>
+                        <p>是的！HotTea 生成的對話內容可以輕鬆複製並分享到社群媒體、通訊軟體或其他平台。您可以把有趣的新聞對話分享給朋友，讓更多人以輕鬆有趣的方式了解時事。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>為什麼 HotTea 生成的對話會有角色頭像？</summary>
+                        <p>HotTea 整合了維基百科的資料，當新聞中出現真實人物時，系統會自動抓取對應的維基百科頭像，讓對話更生動逼真。如果是虛構角色或找不到頭像，則會使用預設圖示。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>HotTea 使用什麼 AI 技術？</summary>
+                        <p>HotTea 採用 Google 最新的 Gemini AI 模型，這是 Google 推出的先進大型語言模型，擅長理解複雜文本並生成自然流暢的對話內容，確保轉換後的對話既準確又有趣。</p>
+                    </details>
+                    <details class="faq-item">
+                        <summary>遇到問題該怎麼辦？</summary>
+                        <p>如果您在使用過程中遇到任何問題，歡迎透過 Chrome 擴充功能商店的評論區留言，或直接聯絡我們的客服信箱：alan52027@gmail.com，我們會盡快為您解答。</p>
+                    </details>
+                </div>
+            </section>
+
+            <!-- 用戶評價 -->
+            <section class="testimonial-section">
+                <h2>用戶怎麼說</h2>
+                <div class="testimonials-grid">
+                    <div class="testimonial-item">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">「超好用！現在看新聞變得好有趣，就像在看朋友聊天一樣，再也不會覺得新聞枯燥了。」</p>
+                        <p class="testimonial-author">— Chrome 用戶</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">「AI 轉換的對話很自然，而且會自動抓取人物頭像，看起來超逼真！分享給朋友都說讚。」</p>
+                        <p class="testimonial-author">— Chrome 用戶</p>
+                    </div>
+                    <div class="testimonial-item">
+                        <div class="rating">⭐⭐⭐⭐⭐</div>
+                        <p class="testimonial-text">「完全免費而且支援超多新聞網站，推薦給所有喜歡看新聞的朋友！」</p>
+                        <p class="testimonial-author">— Chrome 用戶</p>
+                    </div>
+                </div>
+            </section>
+        </div>
+
         <div class="footer">
             <a href="privacy.html" class="privacy-link">隱私權政策</a>
         </div>
