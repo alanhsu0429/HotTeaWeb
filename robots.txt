@@ -9,7 +9,7 @@ Allow: /index.html
 Allow: /privacy.html
 
 # 網站地圖
-Sitemap: https://alanhsu0429.github.io/HotTeaWeb/sitemap.xml
+Sitemap: https://hottea.app/sitemap.xml
 
 # 爬取延遲（禮貌性設定）
 Crawl-delay: 1
