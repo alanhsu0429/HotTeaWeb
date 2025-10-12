@@ -1,13 +1,37 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
-    <!-- 主頁 -->
+    <!-- English Home Page (Default) -->
     <url>
         <loc>https://hottea.app/</loc>
-        <lastmod>2025-10-12</lastmod>
+        <xhtml:link rel="alternate" hreflang="en" href="https://hottea.app/" />
+        <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://hottea.app/" />
+        <lastmod>2025-10-13</lastmod>
         <changefreq>weekly</changefreq>
         <priority>1.0</priority>
+        <image:image>
+            <image:loc>https://hottea.app/images/HotTea3.png</image:loc>
+            <image:title>HotTea Chrome Extension Interface</image:title>
+            <image:caption>HotTea transforms news into conversation interface</image:caption>
+        </image:image>
+        <image:image>
+            <image:loc>https://hottea.app/images/HotTea.svg</image:loc>
+            <image:title>HotTea Logo</image:title>
+        </image:image>
+    </url>
+
+    <!-- Chinese Home Page (繁體中文) -->
+    <url>
+        <loc>https://hottea.app/zh-tw/</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://hottea.app/" />
+        <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://hottea.app/" />
+        <lastmod>2025-10-13</lastmod>
+        <changefreq>weekly</changefreq>
+        <priority>0.9</priority>
         <image:image>
             <image:loc>https://hottea.app/images/HotTea3.png</image:loc>
             <image:title>HotTea Chrome 擴充功能介面</image:title>
@@ -19,18 +43,46 @@
         </image:image>
     </url>
 
-    <!-- 隱私權政策頁面 -->
+    <!-- English Privacy Policy -->
     <url>
         <loc>https://hottea.app/privacy.html</loc>
-        <lastmod>2025-10-12</lastmod>
+        <xhtml:link rel="alternate" hreflang="en" href="https://hottea.app/privacy.html" />
+        <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/privacy.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://hottea.app/privacy.html" />
+        <lastmod>2025-10-13</lastmod>
         <changefreq>monthly</changefreq>
         <priority>0.6</priority>
     </url>
 
-    <!-- 404 錯誤頁面（可選，某些搜尋引擎會索引） -->
+    <!-- Chinese Privacy Policy (繁體中文) -->
+    <url>
+        <loc>https://hottea.app/zh-tw/privacy.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://hottea.app/privacy.html" />
+        <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/privacy.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://hottea.app/privacy.html" />
+        <lastmod>2025-10-13</lastmod>
+        <changefreq>monthly</changefreq>
+        <priority>0.5</priority>
+    </url>
+
+    <!-- English 404 Page -->
     <url>
         <loc>https://hottea.app/404.html</loc>
-        <lastmod>2025-10-12</lastmod>
+        <xhtml:link rel="alternate" hreflang="en" href="https://hottea.app/404.html" />
+        <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/404.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://hottea.app/404.html" />
+        <lastmod>2025-10-13</lastmod>
+        <changefreq>yearly</changefreq>
+        <priority>0.1</priority>
+    </url>
+
+    <!-- Chinese 404 Page (繁體中文) -->
+    <url>
+        <loc>https://hottea.app/zh-tw/404.html</loc>
+        <xhtml:link rel="alternate" hreflang="en" href="https://hottea.app/404.html" />
+        <xhtml:link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/404.html" />
+        <xhtml:link rel="alternate" hreflang="x-default" href="https://hottea.app/404.html" />
+        <lastmod>2025-10-13</lastmod>
         <changefreq>yearly</changefreq>
         <priority>0.1</priority>
     </url>
