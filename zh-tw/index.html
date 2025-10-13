@@ -545,6 +545,47 @@
         }
 
         @media (max-width: 768px) {
+            .hero-bento-card {
+                padding: 2.5rem 2rem;
+                margin: 2rem auto;
+                border-radius: 20px;
+            }
+
+            .hero-logo {
+                width: 240px;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-tagline {
+                font-size: 1.1rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-cta-button {
+                padding: 0.9rem 2rem;
+                font-size: 0.95rem;
+                margin-bottom: 2rem;
+            }
+
+            .hero-image {
+                margin: 0 -2rem -2.5rem;
+                border-radius: 0 0 16px 16px;
+            }
+
+            .language-switcher-inline {
+                top: 15px;
+                right: 15px;
+            }
+
+            .lang-button-inline {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .lang-code {
+                display: none;
+            }
+
             .logo {
                 width: 220px;
                 margin-bottom: 1.5rem;
@@ -594,6 +635,43 @@
         }
 
         @media (max-width: 480px) {
+            .hero-bento-card {
+                padding: 2rem 1.5rem;
+                margin: 1.5rem auto;
+                border-radius: 16px;
+                width: 95%;
+            }
+
+            .hero-logo {
+                width: 200px;
+                margin-bottom: 1.2rem;
+            }
+
+            .hero-tagline {
+                font-size: 1rem;
+                margin-bottom: 1.2rem;
+            }
+
+            .hero-cta-button {
+                padding: 0.8rem 1.8rem;
+                font-size: 0.9rem;
+                margin-bottom: 1.5rem;
+            }
+
+            .hero-image {
+                margin: 0 -1.5rem -2rem;
+                border-radius: 0 0 12px 12px;
+            }
+
+            .language-switcher-inline {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-button-inline {
+                padding: 5px 10px;
+            }
+
             .logo {
                 width: 180px;
             }
@@ -648,12 +726,132 @@
             }
         }
 
-        /* Language Switcher Styles */
+        /* Hide original fixed language switcher */
         .language-switcher {
-            position: fixed;
+            display: none;
+        }
+
+        /* Hero Bento Card */
+        .hero-bento-card {
+            position: relative;
+            width: 100%;
+            max-width: 1200px;
+            background: #FFFFFF;
+            border-radius: 24px;
+            padding: 3rem;
+            margin: 4rem auto 3rem;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.06);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Inline Language Switcher (inside Bento Card) */
+        .language-switcher-inline {
+            position: absolute;
             top: 20px;
             right: 20px;
-            z-index: 1000;
+            z-index: 10;
+        }
+
+        .lang-button-inline {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: #F9F9F9;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+        }
+
+        .lang-button-inline:hover {
+            background: white;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.15);
+            transform: translateY(-1px);
+        }
+
+        .lang-dropdown-inline {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: white;
+            border: 1px solid rgba(0,0,0,0.1);
+            border-radius: 12px;
+            min-width: 180px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .lang-dropdown-inline.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        /* Hero Logo */
+        .hero-logo {
+            width: 320px;
+            height: auto;
+            margin-bottom: 2rem;
+        }
+
+        /* Hero Tagline */
+        .hero-tagline {
+            font-size: 1.4rem;
+            font-weight: 400;
+            color: #333333;
+            margin-bottom: 2rem;
+            line-height: 1.4;
+            letter-spacing: 0.05em;
+            max-width: 800px;
+        }
+
+        /* Hero CTA Button */
+        .hero-cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF8C00, #FFA500);
+            color: white;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            letter-spacing: 0.02em;
+            margin-bottom: 2.5rem;
+        }
+
+        .hero-cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 140, 0, 0.4);
+        }
+
+        .hero-cta-button:active {
+            transform: translateY(0);
+        }
+
+        /* Hero Image */
+        .hero-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            border-radius: 0 0 16px 16px;
+            margin: 0 -3rem -3rem;
         }
 
         .lang-button {
@@ -815,19 +1013,44 @@
     </div>
 
     <div class="container">
-        <div class="content">
-            <img src="../images/HotTea.svg" alt="HotTea Logo" class="logo">
-            <h1 class="tagline">將枯燥的新聞轉換為有趣的聊天室吃瓜現場</h1>
-        </div>
-        <div class="cta-container">
+        <!-- Hero Bento Card -->
+        <div class="hero-bento-card">
+            <!-- Language Switcher (moved inside card) -->
+            <div class="language-switcher-inline">
+                <button class="lang-button-inline" id="langButtonInline" aria-label="切換語言">
+                    <span class="lang-flag" id="currentFlagInline">🇹🇼</span>
+                    <span class="lang-code" id="currentLangInline">中文</span>
+                    <span class="lang-arrow">▼</span>
+                </button>
+                <div class="lang-dropdown-inline" id="langDropdownInline">
+                    <a href="/" class="lang-option" data-lang="en">
+                        <span class="lang-flag">🇺🇸</span>
+                        <span>English</span>
+                    </a>
+                    <a href="/zh-tw/" class="lang-option" data-lang="zh-TW">
+                        <span class="lang-flag">🇹🇼</span>
+                        <span>繁體中文</span>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Logo -->
+            <img src="../images/HotTea.svg" alt="HotTea Logo" class="hero-logo">
+
+            <!-- Tagline -->
+            <h1 class="hero-tagline">將枯燥的新聞轉換為有趣的聊天室吃瓜現場</h1>
+
+            <!-- CTA Button -->
             <a href="https://chromewebstore.google.com/detail/moomcmpkellcnbpcbfdoknafcmfciedm?utm_source=item-share-cb"
                target="_blank"
                rel="noopener noreferrer"
-               class="cta-button">
+               class="hero-cta-button">
                 立即安裝 Chrome 擴充功能
             </a>
+
+            <!-- Hero Image -->
+            <img src="../images/listenweb.png" alt="People listening" class="hero-image" loading="lazy">
         </div>
-        <img src="../images/listenweb.png" alt="People listening" class="bottom-image" loading="lazy">
 
         <!-- 內容區塊 -->
         <div class="content-sections">
@@ -963,12 +1186,12 @@
     </div>
 
     <script>
-        // Language Switcher Functionality
+        // Language Switcher Functionality (Inline version)
         (function() {
-            const langButton = document.getElementById('langButton');
-            const langDropdown = document.getElementById('langDropdown');
-            const currentFlag = document.getElementById('currentFlag');
-            const currentLang = document.getElementById('currentLang');
+            const langButton = document.getElementById('langButtonInline');
+            const langDropdown = document.getElementById('langDropdownInline');
+            const currentFlag = document.getElementById('currentFlagInline');
+            const currentLang = document.getElementById('currentLangInline');
 
             // Detect current language from URL
             function getCurrentLanguage() {
