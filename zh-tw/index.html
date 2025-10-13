@@ -201,6 +201,10 @@
 
         @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap');
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         html, body {
             min-height: 100%;
             overflow-x: hidden;
@@ -738,7 +742,7 @@
             max-width: 1200px;
             background: #FFFFFF;
             border-radius: 24px;
-            padding: 3rem;
+            padding: clamp(2rem, 5vw, 3rem);
             margin: 4rem auto 3rem;
             box-shadow: 0 8px 32px rgba(0,0,0,0.08);
             border: 1px solid rgba(0,0,0,0.06);
@@ -818,6 +822,15 @@
             max-width: 800px;
         }
 
+        /* Hero CTA Buttons Container */
+        .hero-cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 2.5rem;
+        }
+
         /* Hero CTA Button */
         .hero-cta-button {
             display: inline-block;
@@ -833,7 +846,6 @@
             border: none;
             cursor: pointer;
             letter-spacing: 0.02em;
-            margin-bottom: 2.5rem;
         }
 
         .hero-cta-button:hover {
@@ -843,6 +855,19 @@
 
         .hero-cta-button:active {
             transform: translateY(0);
+        }
+
+        /* Hero CTA Secondary Button */
+        .hero-cta-button-secondary {
+            background: transparent;
+            color: #FF8C00;
+            border: 2px solid #FF8C00;
+            box-shadow: 0 4px 15px rgba(255, 140, 0, 0.2);
+        }
+
+        .hero-cta-button-secondary:hover {
+            background: #FFF8F0;
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
         }
 
         /* Hero Image */
@@ -1040,20 +1065,25 @@
             <!-- Tagline -->
             <h1 class="hero-tagline">將枯燥的新聞轉換為有趣的聊天室吃瓜現場</h1>
 
-            <!-- CTA Button -->
-            <a href="https://chromewebstore.google.com/detail/moomcmpkellcnbpcbfdoknafcmfciedm?utm_source=item-share-cb"
-               target="_blank"
-               rel="noopener noreferrer"
-               class="hero-cta-button">
-                立即安裝 Chrome 擴充功能
-            </a>
+            <!-- CTA Buttons -->
+            <div class="hero-cta-buttons">
+                <a href="https://chromewebstore.google.com/detail/moomcmpkellcnbpcbfdoknafcmfciedm?utm_source=item-share-cb"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="hero-cta-button">
+                    立即安裝 Chrome 擴充功能
+                </a>
+                <a href="#features" class="hero-cta-button hero-cta-button-secondary">
+                    查看介紹
+                </a>
+            </div>
 
             <!-- Hero Image -->
             <img src="../images/listenweb.png" alt="People listening" class="hero-image" loading="lazy">
         </div>
 
         <!-- 內容區塊 -->
-        <div class="content-sections">
+        <div class="content-sections" id="features">
             <!-- 為什麼選擇 HotTea -->
             <section class="feature-section">
                 <h2>為什麼選擇 HotTea？</h2>
