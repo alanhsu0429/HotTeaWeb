@@ -187,9 +187,173 @@
                 font-size: 0.85rem;
             }
         }
+
+        /* Language Switcher Styles */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 2px solid #FF8C00;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'Inter', system-ui, sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .lang-button:hover {
+            background: #FFF8F0;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .lang-flag {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .lang-code {
+            font-weight: 600;
+            color: #FF8C00;
+        }
+
+        .lang-arrow {
+            font-size: 0.7rem;
+            color: #FF8C00;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-button:hover .lang-arrow {
+            transform: translateY(2px);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: white;
+            border: 2px solid #FF8C00;
+            border-radius: 12px;
+            min-width: 180px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .lang-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+
+        .lang-option:hover {
+            background: #FFF8F0;
+            color: #FF8C00;
+        }
+
+        .lang-option:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .lang-option:last-child {
+            border-radius: 0 0 10px 10px;
+        }
+
+        .lang-option .lang-flag {
+            font-size: 1.3rem;
+        }
+
+        @media (max-width: 768px) {
+            .language-switcher {
+                top: 15px;
+                right: 15px;
+            }
+
+            .lang-button {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .lang-code {
+                display: none;
+            }
+
+            .lang-dropdown {
+                min-width: 150px;
+            }
+
+            .lang-option {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-button {
+                padding: 5px 10px;
+            }
+
+            .lang-flag {
+                font-size: 1.1rem;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-button" id="langButton" aria-label="Switch Language">
+            <span class="lang-flag" id="currentFlag">🇺🇸</span>
+            <span class="lang-code" id="currentLang">EN</span>
+            <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+            <a href="/404.html" class="lang-option" data-lang="en">
+                <span class="lang-flag">🇺🇸</span>
+                <span>English</span>
+            </a>
+            <a href="/zh-tw/404.html" class="lang-option" data-lang="zh-TW">
+                <span class="lang-flag">🇹🇼</span>
+                <span>繁體中文</span>
+            </a>
+        </div>
+    </div>
+
     <div class="container">
         <div class="content">
             <img src="images/HotTea.svg" alt="HotTea Logo" class="logo">
@@ -214,6 +378,61 @@
     </div>
 
     <script>
+        // Language Switcher Functionality
+        (function() {
+            const langButton = document.getElementById('langButton');
+            const langDropdown = document.getElementById('langDropdown');
+            const currentFlag = document.getElementById('currentFlag');
+            const currentLang = document.getElementById('currentLang');
+
+            // Detect current language from URL
+            function getCurrentLanguage() {
+                const path = window.location.pathname;
+                if (path.includes('/zh-tw/')) {
+                    return 'zh-TW';
+                }
+                return 'en';
+            }
+
+            // Update UI based on current language
+            function updateLanguageUI() {
+                const currentLanguage = getCurrentLanguage();
+                if (currentLanguage === 'zh-TW') {
+                    currentFlag.textContent = '🇹🇼';
+                    currentLang.textContent = '中文';
+                } else {
+                    currentFlag.textContent = '🇺🇸';
+                    currentLang.textContent = 'EN';
+                }
+            }
+
+            // Toggle dropdown
+            langButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langDropdown.classList.toggle('active');
+            });
+
+            // Close dropdown when clicking outside
+            document.addEventListener('click', function(e) {
+                if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                    langDropdown.classList.remove('active');
+                }
+            });
+
+            // Track language selection
+            const langOptions = document.querySelectorAll('.lang-option');
+            langOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    const selectedLang = this.getAttribute('data-lang');
+                    localStorage.setItem('preferredLanguage', selectedLang);
+                    console.log('Language switched to:', selectedLang);
+                });
+            });
+
+            // Initialize
+            updateLanguageUI();
+        })();
+
         // Automatic 404 error logging (for debugging)
         console.log('404 Error - Page not found:', window.location.href);
 
