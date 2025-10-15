@@ -624,6 +624,8 @@
         const feedbackTextarea = document.getElementById('feedback');
         const charCount = document.getElementById('charCount');
 
+        let formSubmitted = false; // Flag to prevent double-sending
+
         // Character Counter
         if (feedbackTextarea && charCount) {
             feedbackTextarea.addEventListener('input', function() {
@@ -632,23 +634,27 @@
         }
 
         // Reusable function to call the API
-        async function sendUninstallLog(logToken, logReason, logFeedback) {
+        function sendUninstallLog(logToken, logReason, logFeedback) {
+            if (!logToken) return; // Don't send if there's no token
+
+            const body = JSON.stringify({
+                token: logToken,
+                reason: logReason,
+                feedback: logFeedback
+            });
+
+            // Use fetch with keepalive to ensure the request is sent,
+            // even if the page is being closed.
             try {
-                const response = await fetch(SUPABASE_FUNCTION_URL, {
+                fetch(SUPABASE_FUNCTION_URL, {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                        token: logToken,
-                        reason: logReason,
-                        feedback: logFeedback
-                    })
+                    body: body,
+                    keepalive: true
                 });
-                if (!response.ok) throw new Error('API call failed: ' + response.status);
-                console.log('✅ Successfully logged event:', { reason: logReason });
-                return true;
+                console.log('✅ Fired uninstall log event:', { reason: logReason });
             } catch (error) {
-                console.error('❌ Failed to send uninstall log:', error);
-                return false;
+                console.error('❌ Failed to fire uninstall log:', error);
             }
         }
 
@@ -656,7 +662,6 @@
         if (!token) {
             console.warn('No uninstall token found. Hiding feedback form.');
             if (form) form.style.display = 'none';
-            // Optionally, show a message that feedback can't be submitted.
             const container = document.querySelector('.content');
             if(container){
                 const noTokenMessage = document.createElement('p');
@@ -665,16 +670,12 @@
                 noTokenMessage.style.color = '#666';
                 container.appendChild(noTokenMessage);
             }
-
         } else {
-            console.log('Uninstall token found:', token);
-            // 1. On page load, send an auto-triggered event.
-            sendUninstallLog(token, 'auto_triggered_uninstall', null);
-
-            // 2. Listen for form submission.
+            // 1. Listen for form submission.
             if(form) {
-                form.addEventListener('submit', async (event) => {
+                form.addEventListener('submit', (event) => {
                     event.preventDefault();
+                    if (formSubmitted) return; // Prevent double submission
 
                     const selectedReasonInput = document.querySelector('input[name="reason"]:checked');
                     if (!selectedReasonInput) {
@@ -683,6 +684,8 @@
                     }
                     if(reasonError) reasonError.classList.remove('show');
 
+                    formSubmitted = true; // Set flag
+
                     if(submitBtn) submitBtn.disabled = true;
                     if(loading) loading.classList.add('show');
 
@@ -690,7 +693,7 @@
                     const feedback = feedbackTextarea.value.trim();
 
                     // Send the detailed feedback.
-                    await sendUninstallLog(token, reason, feedback);
+                    sendUninstallLog(token, reason, feedback);
 
                     // Redirect to thank you page.
                     setTimeout(() => {
@@ -698,6 +701,14 @@
                     }, 300);
                 });
             }
+
+            // 2. Listen for page unload (e.g., closing the tab).
+            window.addEventListener('pagehide', () => {
+                if (!formSubmitted) {
+                    console.log('Page closing without feedback, sending basic uninstall log.');
+                    sendUninstallLog(token, 'closed_without_feedback', null);
+                }
+            });
         }
     });
 </script>
