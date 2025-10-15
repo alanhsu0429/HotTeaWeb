@@ -1,0 +1,704 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>意見回饋 - HotTea 🍵</title>
+    <meta name="description" content="分享您的意見，幫助我們改進 HotTea">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://hottea.app/zh-tw/feedback.html">
+
+    <!-- hreflang for Multi-language Support -->
+    <link rel="alternate" hreflang="en" href="https://hottea.app/feedback.html" />
+    <link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/feedback.html" />
+    <link rel="alternate" hreflang="x-default" href="https://hottea.app/feedback.html" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap');
+
+        html, body {
+            min-height: 100%;
+            overflow-x: hidden;
+            overflow-y: auto;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: #FFFAF2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .content {
+            width: 100%;
+            max-width: 800px;
+            background: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+            margin-top: 4rem;
+        }
+
+        .logo {
+            width: 120px;
+            height: auto;
+            margin: 0 auto 2rem;
+            display: block;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .subtitle {
+            font-size: 1rem;
+            color: #666;
+            text-align: center;
+            margin-bottom: 3rem;
+            line-height: 1.6;
+        }
+
+        .form-group {
+            margin-bottom: 2rem;
+        }
+
+        label {
+            display: block;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .required {
+            color: #FF8C00;
+            margin-left: 0.25rem;
+        }
+
+        .reason-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+        }
+
+        .reason-option {
+            position: relative;
+        }
+
+        .reason-option input[type="radio"] {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        .reason-label {
+            display: flex;
+            align-items: center;
+            padding: 1rem 1.25rem;
+            background: #F9F9F9;
+            border: 2px solid #E0E0E0;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 0.95rem;
+            color: #333;
+            min-height: 60px;
+        }
+
+        .reason-option input[type="radio"]:checked + .reason-label {
+            background: #FFF8F0;
+            border-color: #FF8C00;
+            color: #FF8C00;
+            font-weight: 600;
+        }
+
+        .reason-label:hover {
+            border-color: #FF8C00;
+            background: #FFF8F0;
+        }
+
+        .reason-icon {
+            margin-right: 0.75rem;
+            font-size: 1.25rem;
+        }
+
+        textarea {
+            width: 100%;
+            min-height: 120px;
+            padding: 1rem;
+            border: 2px solid #E0E0E0;
+            border-radius: 12px;
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 0.95rem;
+            color: #333;
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        textarea:focus {
+            outline: none;
+            border-color: #FF8C00;
+            background: #FFF8F0;
+        }
+
+        .char-count {
+            text-align: right;
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 0.5rem;
+        }
+
+        .error-message {
+            display: none;
+            color: #d32f2f;
+            font-size: 0.9rem;
+            margin-top: 0.5rem;
+            padding: 0.5rem;
+            background: #ffebee;
+            border-radius: 8px;
+        }
+
+        .error-message.show {
+            display: block;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            flex: 1;
+            padding: 1rem 2rem;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            text-align: center;
+            text-decoration: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF8C00, #FFA500);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-primary:disabled {
+            background: #ccc;
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #666;
+            border: 2px solid #999;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f8f8;
+            border-color: #666;
+        }
+
+        .loading {
+            display: none;
+            text-align: center;
+            margin-top: 1rem;
+        }
+
+        .loading.show {
+            display: block;
+        }
+
+        .spinner {
+            display: inline-block;
+            width: 24px;
+            height: 24px;
+            border: 3px solid rgba(255, 140, 0, 0.3);
+            border-top-color: #FF8C00;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 2px solid #FF8C00;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .lang-button:hover {
+            background: #FFF8F0;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .lang-flag {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .lang-code {
+            font-weight: 600;
+            color: #FF8C00;
+        }
+
+        .lang-arrow {
+            font-size: 0.7rem;
+            color: #FF8C00;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-button:hover .lang-arrow {
+            transform: translateY(2px);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: white;
+            border: 2px solid #FF8C00;
+            border-radius: 12px;
+            min-width: 180px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .lang-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+
+        .lang-option:hover {
+            background: #FFF8F0;
+            color: #FF8C00;
+        }
+
+        .lang-option:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .lang-option:last-child {
+            border-radius: 0 0 10px 10px;
+        }
+
+        .lang-option .lang-flag {
+            font-size: 1.3rem;
+        }
+
+        .footer {
+            text-align: center;
+            color: #999;
+            font-size: 0.8rem;
+            margin-top: 2rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                padding: 2rem 1.5rem;
+                margin-top: 3rem;
+            }
+
+            h1 {
+                font-size: 1.5rem;
+            }
+
+            .reason-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .language-switcher {
+                top: 15px;
+                right: 15px;
+            }
+
+            .lang-button {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .lang-code {
+                display: none;
+            }
+
+            .lang-dropdown {
+                min-width: 150px;
+            }
+
+            .lang-option {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 1rem 0.5rem;
+            }
+
+            .content {
+                padding: 1.5rem 1rem;
+                margin-top: 2rem;
+            }
+
+            h1 {
+                font-size: 1.3rem;
+            }
+
+            .subtitle {
+                font-size: 0.9rem;
+            }
+
+            .reason-label {
+                padding: 0.875rem 1rem;
+                font-size: 0.9rem;
+            }
+
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-button {
+                padding: 5px 10px;
+            }
+
+            .lang-flag {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-button" id="langButton" aria-label="切換語言">
+            <span class="lang-flag" id="currentFlag">🇹🇼</span>
+            <span class="lang-code" id="currentLang">中文</span>
+            <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+            <a href="/feedback.html" class="lang-option" data-lang="en">
+                <span class="lang-flag">🇺🇸</span>
+                <span>English</span>
+            </a>
+            <a href="/zh-tw/feedback.html" class="lang-option" data-lang="zh-TW">
+                <span class="lang-flag">🇹🇼</span>
+                <span>繁體中文</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <img src="../images/HotTea.svg" alt="HotTea Logo" class="logo">
+
+            <h1>感謝您的意見回饋</h1>
+            <p class="subtitle">請告訴我們您卸載的原因，您的寶貴意見將幫助我們改進 HotTea！</p>
+
+            <form id="feedbackForm">
+                <!-- Uninstall Reason -->
+                <div class="form-group">
+                    <label for="reason">
+                        為什麼要卸載 HotTea？
+                        <span class="required">*</span>
+                    </label>
+                    <div class="reason-grid">
+                        <div class="reason-option">
+                            <input type="radio" id="reason1" name="reason" value="features">
+                            <label for="reason1" class="reason-label">
+                                <span class="reason-icon">🎯</span>
+                                功能不符合需求
+                            </label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="radio" id="reason2" name="reason" value="complicated">
+                            <label for="reason2" class="reason-label">
+                                <span class="reason-icon">🤔</span>
+                                使用太複雜
+                            </label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="radio" id="reason3" name="reason" value="performance">
+                            <label for="reason3" class="reason-label">
+                                <span class="reason-icon">⚡</span>
+                                性能問題
+                            </label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="radio" id="reason4" name="reason" value="alternative">
+                            <label for="reason4" class="reason-label">
+                                <span class="reason-icon">🔄</span>
+                                找到替代品
+                            </label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="radio" id="reason5" name="reason" value="privacy">
+                            <label for="reason5" class="reason-label">
+                                <span class="reason-icon">🔒</span>
+                                隱私疑慮
+                            </label>
+                        </div>
+                        <div class="reason-option">
+                            <input type="radio" id="reason6" name="reason" value="other">
+                            <label for="reason6" class="reason-label">
+                                <span class="reason-icon">💭</span>
+                                其他
+                            </label>
+                        </div>
+                    </div>
+                    <div class="error-message" id="reasonError">
+                        請至少選擇一個原因
+                    </div>
+                </div>
+
+                <!-- Detailed Feedback -->
+                <div class="form-group">
+                    <label for="feedback">
+                        詳細意見（選填）
+                    </label>
+                    <textarea
+                        id="feedback"
+                        name="feedback"
+                        placeholder="告訴我們更多關於您的使用體驗..."
+                        maxlength="500"
+                    ></textarea>
+                    <div class="char-count">
+                        <span id="charCount">0</span> / 500
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <div class="button-group">
+                    <a href="../index.html" class="btn btn-secondary">取消</a>
+                    <button type="submit" class="btn btn-primary" id="submitBtn">
+                        提交意見
+                    </button>
+                </div>
+
+                <!-- Loading State -->
+                <div class="loading" id="loading">
+                    <div class="spinner"></div>
+                    <p style="margin-top: 0.5rem; color: #666;">提交中...</p>
+                </div>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 HotTea. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Language Switcher Functionality
+        (function() {
+            const langButton = document.getElementById('langButton');
+            const langDropdown = document.getElementById('langDropdown');
+            const currentFlag = document.getElementById('currentFlag');
+            const currentLang = document.getElementById('currentLang');
+
+            function getCurrentLanguage() {
+                const path = window.location.pathname;
+                if (path.includes('/zh-tw/')) {
+                    return 'zh-TW';
+                }
+                return 'en';
+            }
+
+            function updateLanguageUI() {
+                const currentLanguage = getCurrentLanguage();
+                if (currentLanguage === 'zh-TW') {
+                    currentFlag.textContent = '🇹🇼';
+                    currentLang.textContent = '中文';
+                } else {
+                    currentFlag.textContent = '🇺🇸';
+                    currentLang.textContent = 'EN';
+                }
+            }
+
+            langButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langDropdown.classList.toggle('active');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                    langDropdown.classList.remove('active');
+                }
+            });
+
+            const langOptions = document.querySelectorAll('.lang-option');
+            langOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    const selectedLang = this.getAttribute('data-lang');
+                    localStorage.setItem('preferredLanguage', selectedLang);
+                });
+            });
+
+            updateLanguageUI();
+        })();
+
+        // Character Counter
+        const feedbackTextarea = document.getElementById('feedback');
+        const charCount = document.getElementById('charCount');
+
+        feedbackTextarea.addEventListener('input', function() {
+            charCount.textContent = this.value.length;
+        });
+
+        // Form Submission
+        const form = document.getElementById('feedbackForm');
+        const submitBtn = document.getElementById('submitBtn');
+        const loading = document.getElementById('loading');
+        const reasonError = document.getElementById('reasonError');
+
+        form.addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            // Validate reason selection
+            const selectedReason = document.querySelector('input[name="reason"]:checked');
+            if (!selectedReason) {
+                reasonError.classList.add('show');
+                return;
+            }
+            reasonError.classList.remove('show');
+
+            // Get form data
+            const reason = selectedReason.value;
+            const feedback = feedbackTextarea.value.trim();
+
+            // Get API key from URL if present
+            const urlParams = new URLSearchParams(window.location.search);
+            const apiKey = urlParams.get('api_key');
+
+            // Show loading state
+            submitBtn.disabled = true;
+            loading.classList.add('show');
+
+            try {
+                // If API key is present, send to backend
+                if (apiKey) {
+                    const supabaseUrl = 'https://mnpzaefxnsxfctsfsxfv.supabase.co/functions/v1/track-uninstall';
+                    const params = new URLSearchParams({
+                        api_key: apiKey,
+                        reason: reason,
+                        feedback: feedback
+                    });
+
+                    await fetch(`${supabaseUrl}?${params}`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    });
+                }
+
+                // Log feedback locally (for debugging)
+                console.log('Feedback submitted:', { reason, feedback, apiKey });
+
+                // Redirect to thank you page after a short delay
+                setTimeout(() => {
+                    window.location.href = 'thank-you.html';
+                }, 500);
+
+            } catch (error) {
+                console.error('Error submitting feedback:', error);
+                // Still redirect to thank you page even if API call fails
+                setTimeout(() => {
+                    window.location.href = 'thank-you.html';
+                }, 500);
+            }
+        });
+
+        // Track page view
+        console.log('Feedback page loaded');
+        const urlParams = new URLSearchParams(window.location.search);
+        if (urlParams.get('api_key')) {
+            console.log('API key present:', urlParams.get('api_key'));
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Primary Meta Tags -->
+    <title>感謝您 - HotTea 🍵</title>
+    <meta name="description" content="感謝您的意見回饋 - HotTea">
+    <meta name="robots" content="noindex, nofollow">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://hottea.app/zh-tw/thank-you.html">
+
+    <!-- hreflang for Multi-language Support -->
+    <link rel="alternate" hreflang="en" href="https://hottea.app/thank-you.html" />
+    <link rel="alternate" hreflang="zh-TW" href="https://hottea.app/zh-tw/thank-you.html" />
+    <link rel="alternate" hreflang="x-default" href="https://hottea.app/thank-you.html" />
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="../images/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="../images/favicon-16x16.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="../images/apple-touch-icon.png">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;600;700&display=swap');
+
+        html, body {
+            height: 100%;
+            overflow-x: hidden;
+            font-family: 'Noto Sans TC', sans-serif;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            min-height: 100vh;
+            background: #FFFAF2;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem 1rem;
+        }
+
+        .content {
+            text-align: center;
+            z-index: 10;
+            max-width: 700px;
+            background: white;
+            border-radius: 16px;
+            padding: 3rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+        }
+
+        .logo {
+            width: 150px;
+            height: auto;
+            margin-bottom: 2rem;
+            filter: drop-shadow(0 4px 8px rgba(0,0,0,0.1));
+        }
+
+        .icon {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+        }
+
+        h1 {
+            font-size: 2rem;
+            font-weight: 700;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .message {
+            font-size: 1.1rem;
+            color: #666;
+            margin-bottom: 2rem;
+            line-height: 1.7;
+        }
+
+        .highlight {
+            color: #FF8C00;
+            font-weight: 600;
+        }
+
+        .future-plans {
+            background: #FFF8F0;
+            border: 2px solid #FFE8D1;
+            border-radius: 12px;
+            padding: 2rem 1.5rem;
+            margin: 2rem 0;
+            text-align: left;
+        }
+
+        .future-plans h2 {
+            font-size: 1.3rem;
+            color: #333;
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .future-plans ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .future-plans li {
+            padding: 0.75rem 0;
+            color: #555;
+            font-size: 1rem;
+            line-height: 1.6;
+            border-bottom: 1px solid #FFE8D1;
+        }
+
+        .future-plans li:last-child {
+            border-bottom: none;
+        }
+
+        .future-plans li::before {
+            content: "✨";
+            margin-right: 0.75rem;
+        }
+
+        .button-group {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2.5rem;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            letter-spacing: 0.02em;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF8C00, #FFA500);
+            color: white;
+            box-shadow: 0 8px 20px rgba(255, 140, 0, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 25px rgba(255, 140, 0, 0.4);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: #666;
+            border: 2px solid #999;
+        }
+
+        .btn-secondary:hover {
+            background: #f8f8f8;
+            border-color: #666;
+            transform: translateY(-2px);
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+        }
+
+        .lang-button {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: white;
+            border: 2px solid #FF8C00;
+            border-radius: 25px;
+            padding: 8px 16px;
+            cursor: pointer;
+            font-family: 'Noto Sans TC', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .lang-button:hover {
+            background: #FFF8F0;
+            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
+            transform: translateY(-1px);
+        }
+
+        .lang-flag {
+            font-size: 1.2rem;
+            line-height: 1;
+        }
+
+        .lang-code {
+            font-weight: 600;
+            color: #FF8C00;
+        }
+
+        .lang-arrow {
+            font-size: 0.7rem;
+            color: #FF8C00;
+            transition: transform 0.3s ease;
+        }
+
+        .lang-button:hover .lang-arrow {
+            transform: translateY(2px);
+        }
+
+        .lang-dropdown {
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            background: white;
+            border: 2px solid #FF8C00;
+            border-radius: 12px;
+            min-width: 180px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px);
+            transition: all 0.3s ease;
+        }
+
+        .lang-dropdown.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        .lang-option {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            text-decoration: none;
+            color: #333;
+            font-size: 0.9rem;
+            transition: all 0.2s ease;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .lang-option:last-child {
+            border-bottom: none;
+        }
+
+        .lang-option:hover {
+            background: #FFF8F0;
+            color: #FF8C00;
+        }
+
+        .lang-option:first-child {
+            border-radius: 10px 10px 0 0;
+        }
+
+        .lang-option:last-child {
+            border-radius: 0 0 10px 10px;
+        }
+
+        .lang-option .lang-flag {
+            font-size: 1.3rem;
+        }
+
+        .footer {
+            position: absolute;
+            bottom: 1rem;
+            text-align: center;
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .content {
+                padding: 2rem 1.5rem;
+            }
+
+            h1 {
+                font-size: 1.6rem;
+            }
+
+            .message {
+                font-size: 1rem;
+            }
+
+            .future-plans {
+                padding: 1.5rem 1rem;
+            }
+
+            .future-plans h2 {
+                font-size: 1.1rem;
+            }
+
+            .future-plans li {
+                font-size: 0.9rem;
+            }
+
+            .button-group {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+            }
+
+            .language-switcher {
+                top: 15px;
+                right: 15px;
+            }
+
+            .lang-button {
+                padding: 6px 12px;
+                font-size: 0.85rem;
+            }
+
+            .lang-code {
+                display: none;
+            }
+
+            .lang-dropdown {
+                min-width: 150px;
+            }
+
+            .lang-option {
+                padding: 10px 14px;
+                font-size: 0.85rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .content {
+                padding: 1.5rem 1rem;
+            }
+
+            .logo {
+                width: 120px;
+            }
+
+            .icon {
+                font-size: 3rem;
+            }
+
+            h1 {
+                font-size: 1.4rem;
+            }
+
+            .message {
+                font-size: 0.95rem;
+            }
+
+            .language-switcher {
+                top: 10px;
+                right: 10px;
+            }
+
+            .lang-button {
+                padding: 5px 10px;
+            }
+
+            .lang-flag {
+                font-size: 1.1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-button" id="langButton" aria-label="切換語言">
+            <span class="lang-flag" id="currentFlag">🇹🇼</span>
+            <span class="lang-code" id="currentLang">中文</span>
+            <span class="lang-arrow">▼</span>
+        </button>
+        <div class="lang-dropdown" id="langDropdown">
+            <a href="/thank-you.html" class="lang-option" data-lang="en">
+                <span class="lang-flag">🇺🇸</span>
+                <span>English</span>
+            </a>
+            <a href="/zh-tw/thank-you.html" class="lang-option" data-lang="zh-TW">
+                <span class="lang-flag">🇹🇼</span>
+                <span>繁體中文</span>
+            </a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="content">
+            <img src="../images/HotTea.svg" alt="HotTea Logo" class="logo">
+            <div class="icon">💛</div>
+            <h1>感謝您的意見回饋！</h1>
+            <p class="message">
+                很遺憾您決定離開，但我們真心感謝您撥冗分享寶貴的意見。
+                您的回饋對我們來說<span class="highlight">非常重要</span>，將幫助我們為所有使用者持續改進 HotTea。
+            </p>
+
+            <div class="future-plans">
+                <h2>HotTea 的未來規劃</h2>
+                <ul>
+                    <li>提升 AI 對話品質，讓對話更自然流暢</li>
+                    <li>支援更多新聞網站與國際新聞來源</li>
+                    <li>提供可自訂的對話風格與格式</li>
+                    <li>改善效能，加快載入速度</li>
+                    <li>根據用戶意見開發全新功能！</li>
+                </ul>
+            </div>
+
+            <p class="message">
+                我們會持續努力讓 HotTea 變得更好。
+                如果未來您想再試試看，我們隨時歡迎您回來！
+            </p>
+
+            <div class="button-group">
+                <a href="../index.html" class="btn btn-secondary">返回首頁</a>
+                <a href="https://chromewebstore.google.com/detail/moomcmpkellcnbpcbfdoknafcmfciedm?utm_source=item-share-cb"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   class="btn btn-primary">
+                    重新安裝 HotTea
+                </a>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>© 2025 HotTea. All rights reserved.</p>
+        </div>
+    </div>
+
+    <script>
+        // Language Switcher Functionality
+        (function() {
+            const langButton = document.getElementById('langButton');
+            const langDropdown = document.getElementById('langDropdown');
+            const currentFlag = document.getElementById('currentFlag');
+            const currentLang = document.getElementById('currentLang');
+
+            function getCurrentLanguage() {
+                const path = window.location.pathname;
+                if (path.includes('/zh-tw/')) {
+                    return 'zh-TW';
+                }
+                return 'en';
+            }
+
+            function updateLanguageUI() {
+                const currentLanguage = getCurrentLanguage();
+                if (currentLanguage === 'zh-TW') {
+                    currentFlag.textContent = '🇹🇼';
+                    currentLang.textContent = '中文';
+                } else {
+                    currentFlag.textContent = '🇺🇸';
+                    currentLang.textContent = 'EN';
+                }
+            }
+
+            langButton.addEventListener('click', function(e) {
+                e.stopPropagation();
+                langDropdown.classList.toggle('active');
+            });
+
+            document.addEventListener('click', function(e) {
+                if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                    langDropdown.classList.remove('active');
+                }
+            });
+
+            const langOptions = document.querySelectorAll('.lang-option');
+            langOptions.forEach(option => {
+                option.addEventListener('click', function(e) {
+                    const selectedLang = this.getAttribute('data-lang');
+                    localStorage.setItem('preferredLanguage', selectedLang);
+                });
+            });
+
+            updateLanguageUI();
+        })();
+
+        // Track thank you page view
+        console.log('Thank you page loaded');
+    </script>
+</body>
+</html>
