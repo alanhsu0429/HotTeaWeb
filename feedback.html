@@ -573,6 +573,72 @@
     </div>
 
     <script>
+    // Uninstall Tracking
+    document.addEventListener('DOMContentLoaded', function() {
+        const supabaseUrl = 'https://mnpzaefxnsxfctsfsxfv.supabase.co/rest/v1/rpc/log_uninstall_secure';
+        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ucHphZWZ4bnN4ZmN0c2ZzeGZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcyMjk3NzYsImV4cCI6MjA3MjgwNTc3Nn0.LvvFuOwbOfsoOefAEEb9pK_Y3B9RAooKGRN9D7uYbhk';
+
+        function showRateLimitMessage(reset_at) {
+            console.warn(`Rate limit exceeded. Please try again after ${reset_at}`);
+            // Optionally, display a message to the user on the page
+            const form = document.getElementById('feedbackForm');
+            if (form) {
+                const rateLimitDiv = document.createElement('div');
+                rateLimitDiv.className = 'error-message show';
+                rateLimitDiv.style.textAlign = 'center';
+                rateLimitDiv.style.marginBottom = '1rem';
+                rateLimitDiv.textContent = `You have made too many requests. Please wait before submitting again.`;
+                form.parentNode.insertBefore(rateLimitDiv, form);
+            }
+        }
+
+        const params = new URLSearchParams(window.location.search);
+        const apiKey = params.get('api_key');
+
+        if (apiKey) {
+            console.log('API key found, logging uninstall event...');
+            fetch(supabaseUrl, {
+                method: 'POST',
+                keepalive: true,
+                headers: {
+                    'Content-Type': 'application/json',
+                    'apikey': supabaseAnonKey,
+                    'Authorization': `Bearer ${supabaseAnonKey}`
+                },
+                body: JSON.stringify({
+                    p_api_key: apiKey,
+                    p_reason: null,
+                    p_feedback: null,
+                    p_user_agent: navigator.userAgent,
+                    p_referrer: document.referrer
+                })
+            })
+            .then(response => {
+                // .json() can only be used once, so we clone if we need to read body again
+                if (!response.ok) {
+                    return response.json().then(err => Promise.reject(err));
+                }
+                return response.json();
+            })
+            .then(data => {
+                console.log('✅ Uninstall logged successfully:', data);
+                if (data && !data.success && data.error === 'rate_limit_exceeded') {
+                    showRateLimitMessage(data.reset_at);
+                }
+            })
+            .catch(error => {
+                console.error('❌ Failed to log uninstall event:', error);
+                if (error && error.error === 'rate_limit_exceeded') {
+                    showRateLimitMessage(error.reset_at);
+                }
+                // Even if logging fails, we don't block the user from seeing the form.
+            });
+        } else {
+            console.log('No API key found, skipping uninstall log.');
+        }
+    });
+</script>
+    <script>
         // Language Switcher Functionality
         (function() {
             const langButton = document.getElementById('langButton');
