@@ -548,6 +548,23 @@
             color: #FF8C00;
         }
 
+        /* Animation Styles */
+        .animated-component {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .animated-component.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .delay-1 { transition-delay: 0.1s; }
+        .delay-2 { transition-delay: 0.2s; }
+        .delay-3 { transition-delay: 0.3s; }
+        .delay-4 { transition-delay: 0.4s; }
+
         @media (max-width: 768px) {
             .intro-video-section {
                 margin: 2rem auto;
@@ -977,13 +994,13 @@
     <div class="container">
         <!-- Hero Section -->
         <!-- Logo -->
-        <img src="../images/HotTea.svg" alt="HotTea Logo" class="hero-logo">
+        <img src="../images/HotTea.svg" alt="HotTea Logo" class="hero-logo animated-component">
 
         <!-- Tagline -->
-        <h1 class="hero-tagline">將枯燥的新聞轉換為有趣的聊天室吃瓜現場</h1>
+        <h1 class="hero-tagline animated-component delay-1">將枯燥的新聞轉換為有趣的聊天室吃瓜現場</h1>
 
         <!-- CTA Buttons -->
-        <div class="hero-cta-buttons">
+        <div class="hero-cta-buttons animated-component delay-2">
             <a href="https://chromewebstore.google.com/detail/moomcmpkellcnbpcbfdoknafcmfciedm?utm_source=item-share-cb"
                target="_blank"
                rel="noopener noreferrer"
@@ -996,16 +1013,16 @@
         </div>
 
         <!-- Hero Image -->
-        <img src="../images/listenweb.png" alt="People listening" class="hero-image" loading="lazy">
+        <img src="../images/listenweb.png" alt="People listening" class="hero-image animated-component delay-3" loading="lazy">
 
         <!-- 互動式展示區塊 -->
-        <div class="intro-video-section" id="intro">
+        <div class="intro-video-section animated-component" id="intro">
             <h2 class="intro-title">認識 HotTea</h2>
             <!--ARCADE EMBED START--><div style="position: relative; padding-bottom: calc(65.034% + 41px); height: 0px; width: 100%;"><iframe src="https://demo.arcade.software/km2ku3JaXxf82IK8Hmib?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Ask HotTea About SpaceX's Use of NVIDIA DGX Spark" frameborder="0" loading="lazy" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="clipboard-write" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; color-scheme: light;" ></iframe></div><!--ARCADE EMBED END-->
         </div>
 
         <!-- 內容區塊 -->
-        <div class="content-sections" id="features">
+        <div class="content-sections animated-component" id="features">
             <!-- 常見問題 FAQ -->
             <section class="faq-section">
                 <h2>常見問題</h2>
@@ -1118,6 +1135,24 @@
             if (e.key === 'Enter' || e.key === ' ') {
                 document.querySelector('.cta-button').click();
             }
+        });
+    </script>
+    <script>
+        // Animation on scroll
+        document.addEventListener('DOMContentLoaded', () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, {
+                threshold: 0.1
+            });
+
+            const animatedElements = document.querySelectorAll('.animated-component');
+            animatedElements.forEach(el => observer.observe(el));
         });
     </script>
 </body>
