@@ -573,198 +573,133 @@
     </div>
 
     <script>
-    // Uninstall Tracking
-    document.addEventListener('DOMContentLoaded', function() {
-        const supabaseUrl = 'https://mnpzaefxnsxfctsfsxfv.supabase.co/rest/v1/rpc/log_uninstall_secure';
-        const supabaseAnonKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Im1ucHphZWZ4bnN4ZmN0c2ZzeGZ2Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NTcyMjk3NzYsImV4cCI6MjA3MjgwNTc3Nn0.LvvFuOwbOfsoOefAEEb9pK_Y3B9RAooKGRN9D7uYbhk';
+    // Language Switcher Functionality
+    (function() {
+        const langButton = document.getElementById('langButton');
+        const langDropdown = document.getElementById('langDropdown');
+        if (!langButton || !langDropdown) return;
 
-        function showRateLimitMessage(reset_at) {
-            console.warn(`Rate limit exceeded. Please try again after ${reset_at}`);
-            // Optionally, display a message to the user on the page
-            const form = document.getElementById('feedbackForm');
-            if (form) {
-                const rateLimitDiv = document.createElement('div');
-                rateLimitDiv.className = 'error-message show';
-                rateLimitDiv.style.textAlign = 'center';
-                rateLimitDiv.style.marginBottom = '1rem';
-                rateLimitDiv.textContent = `You have made too many requests. Please wait before submitting again.`;
-                form.parentNode.insertBefore(rateLimitDiv, form);
+        const currentFlag = document.getElementById('currentFlag');
+        const currentLang = document.getElementById('currentLang');
+
+        function getCurrentLanguage() {
+            return window.location.pathname.includes('/zh-tw/') ? 'zh-TW' : 'en';
+        }
+
+        function updateLanguageUI() {
+            const currentLanguage = getCurrentLanguage();
+            if (currentLanguage === 'zh-TW') {
+                if(currentFlag) currentFlag.textContent = '🇹🇼';
+                if(currentLang) currentLang.textContent = '中文';
+            } else {
+                if(currentFlag) currentFlag.textContent = '🇺🇸';
+                if(currentLang) currentLang.textContent = 'EN';
             }
         }
 
-        const params = new URLSearchParams(window.location.search);
-        const apiKey = params.get('api_key');
-
-        if (apiKey) {
-            console.log('API key found, logging uninstall event...');
-            fetch(supabaseUrl, {
-                method: 'POST',
-                keepalive: true,
-                headers: {
-                    'Content-Type': 'application/json',
-                    'apikey': supabaseAnonKey,
-                    'Authorization': `Bearer ${supabaseAnonKey}`
-                },
-                body: JSON.stringify({
-                    p_api_key: apiKey,
-                    p_reason: null,
-                    p_feedback: null,
-                    p_user_agent: navigator.userAgent,
-                    p_referrer: document.referrer
-                })
-            })
-            .then(response => {
-                // .json() can only be used once, so we clone if we need to read body again
-                if (!response.ok) {
-                    return response.json().then(err => Promise.reject(err));
-                }
-                return response.json();
-            })
-            .then(data => {
-                console.log('✅ Uninstall logged successfully:', data);
-                if (data && !data.success && data.error === 'rate_limit_exceeded') {
-                    showRateLimitMessage(data.reset_at);
-                }
-            })
-            .catch(error => {
-                console.error('❌ Failed to log uninstall event:', error);
-                if (error && error.error === 'rate_limit_exceeded') {
-                    showRateLimitMessage(error.reset_at);
-                }
-                // Even if logging fails, we don't block the user from seeing the form.
-            });
-        } else {
-            console.log('No API key found, skipping uninstall log.');
-        }
-    });
-</script>
-    <script>
-        // Language Switcher Functionality
-        (function() {
-            const langButton = document.getElementById('langButton');
-            const langDropdown = document.getElementById('langDropdown');
-            const currentFlag = document.getElementById('currentFlag');
-            const currentLang = document.getElementById('currentLang');
-
-            function getCurrentLanguage() {
-                const path = window.location.pathname;
-                if (path.includes('/zh-tw/')) {
-                    return 'zh-TW';
-                }
-                return 'en';
-            }
-
-            function updateLanguageUI() {
-                const currentLanguage = getCurrentLanguage();
-                if (currentLanguage === 'zh-TW') {
-                    currentFlag.textContent = '🇹🇼';
-                    currentLang.textContent = '中文';
-                } else {
-                    currentFlag.textContent = '🇺🇸';
-                    currentLang.textContent = 'EN';
-                }
-            }
-
-            langButton.addEventListener('click', function(e) {
-                e.stopPropagation();
-                langDropdown.classList.toggle('active');
-            });
-
-            document.addEventListener('click', function(e) {
-                if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
-                    langDropdown.classList.remove('active');
-                }
-            });
-
-            const langOptions = document.querySelectorAll('.lang-option');
-            langOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    const selectedLang = this.getAttribute('data-lang');
-                    localStorage.setItem('preferredLanguage', selectedLang);
-                });
-            });
-
-            updateLanguageUI();
-        })();
-
-        // Character Counter
-        const feedbackTextarea = document.getElementById('feedback');
-        const charCount = document.getElementById('charCount');
-
-        feedbackTextarea.addEventListener('input', function() {
-            charCount.textContent = this.value.length;
+        langButton.addEventListener('click', (e) => {
+            e.stopPropagation();
+            langDropdown.classList.toggle('active');
         });
 
-        // Form Submission
+        document.addEventListener('click', (e) => {
+            if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
+                langDropdown.classList.remove('active');
+            }
+        });
+
+        updateLanguageUI();
+    })();
+
+    // New Uninstall Tracking & Feedback Submission Logic
+    document.addEventListener('DOMContentLoaded', () => {
+        const SUPABASE_FUNCTION_URL = 'https://mnpzaefxnsxfctsfsxfv.supabase.co/functions/v1/log-uninstall';
+        const urlParams = new URLSearchParams(window.location.search);
+        const token = urlParams.get('token');
+
         const form = document.getElementById('feedbackForm');
         const submitBtn = document.getElementById('submitBtn');
         const loading = document.getElementById('loading');
         const reasonError = document.getElementById('reasonError');
+        const feedbackTextarea = document.getElementById('feedback');
+        const charCount = document.getElementById('charCount');
 
-        form.addEventListener('submit', async function(e) {
-            e.preventDefault();
-
-            // Validate reason selection
-            const selectedReason = document.querySelector('input[name="reason"]:checked');
-            if (!selectedReason) {
-                reasonError.classList.add('show');
-                return;
-            }
-            reasonError.classList.remove('show');
-
-            // Get form data
-            const reason = selectedReason.value;
-            const feedback = feedbackTextarea.value.trim();
-
-            // Get API key from URL if present
-            const urlParams = new URLSearchParams(window.location.search);
-            const apiKey = urlParams.get('api_key');
-
-            // Show loading state
-            submitBtn.disabled = true;
-            loading.classList.add('show');
-
-            try {
-                // If API key is present, send to backend
-                if (apiKey) {
-                    const supabaseUrl = 'https://mnpzaefxnsxfctsfsxfv.supabase.co/functions/v1/track-uninstall';
-                    const params = new URLSearchParams({
-                        api_key: apiKey,
-                        reason: reason,
-                        feedback: feedback
-                    });
-
-                    await fetch(`${supabaseUrl}?${params}`, {
-                        method: 'POST',
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    });
-                }
-
-                // Log feedback locally (for debugging)
-                console.log('Feedback submitted:', { reason, feedback, apiKey });
-
-                // Redirect to thank you page after a short delay
-                setTimeout(() => {
-                    window.location.href = 'thank-you.html';
-                }, 500);
-
-            } catch (error) {
-                console.error('Error submitting feedback:', error);
-                // Still redirect to thank you page even if API call fails
-                setTimeout(() => {
-                    window.location.href = 'thank-you.html';
-                }, 500);
-            }
-        });
-
-        // Track page view
-        console.log('Feedback page loaded');
-        const urlParams = new URLSearchParams(window.location.search);
-        if (urlParams.get('api_key')) {
-            console.log('API key present:', urlParams.get('api_key'));
+        // Character Counter
+        if (feedbackTextarea && charCount) {
+            feedbackTextarea.addEventListener('input', function() {
+                charCount.textContent = this.value.length;
+            });
         }
-    </script>
+
+        // Reusable function to call the API
+        async function sendUninstallLog(logToken, logReason, logFeedback) {
+            try {
+                const response = await fetch(SUPABASE_FUNCTION_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                        token: logToken,
+                        reason: logReason,
+                        feedback: logFeedback
+                    })
+                });
+                if (!response.ok) throw new Error('API call failed: ' + response.status);
+                console.log('✅ Successfully logged event:', { reason: logReason });
+                return true;
+            } catch (error) {
+                console.error('❌ Failed to send uninstall log:', error);
+                return false;
+            }
+        }
+
+        // Main logic
+        if (!token) {
+            console.warn('No uninstall token found. Hiding feedback form.');
+            if (form) form.style.display = 'none';
+            // Optionally, show a message that feedback can't be submitted.
+            const container = document.querySelector('.content');
+            if(container){
+                const noTokenMessage = document.createElement('p');
+                noTokenMessage.textContent = 'Invalid feedback link. Please submit feedback through the extension.';
+                noTokenMessage.style.textAlign = 'center';
+                noTokenMessage.style.color = '#666';
+                container.appendChild(noTokenMessage);
+            }
+
+        } else {
+            console.log('Uninstall token found:', token);
+            // 1. On page load, send an auto-triggered event.
+            sendUninstallLog(token, 'auto_triggered_uninstall', null);
+
+            // 2. Listen for form submission.
+            if(form) {
+                form.addEventListener('submit', async (event) => {
+                    event.preventDefault();
+
+                    const selectedReasonInput = document.querySelector('input[name="reason"]:checked');
+                    if (!selectedReasonInput) {
+                        if(reasonError) reasonError.classList.add('show');
+                        return;
+                    }
+                    if(reasonError) reasonError.classList.remove('show');
+
+                    if(submitBtn) submitBtn.disabled = true;
+                    if(loading) loading.classList.add('show');
+
+                    const reason = selectedReasonInput.value;
+                    const feedback = feedbackTextarea.value.trim();
+
+                    // Send the detailed feedback.
+                    await sendUninstallLog(token, reason, feedback);
+
+                    // Redirect to thank you page.
+                    setTimeout(() => {
+                        window.location.href = 'thank-you.html';
+                    }, 300);
+                });
+            }
+        }
+    });
+</script>
 </body>
 </html>
