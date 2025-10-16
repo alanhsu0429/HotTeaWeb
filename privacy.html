@@ -46,7 +46,7 @@
 
         body {
             font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            line-height: 1.6;
+            line-height: 1.7;
             color: #333;
             background: #F9F9F9;
             padding: 2rem 1rem;
@@ -56,7 +56,7 @@
             max-width: 800px;
             margin: 0 auto;
             background: white;
-            padding: 2rem;
+            padding: 2rem 3rem;
             border-radius: 8px;
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
         }
@@ -75,7 +75,7 @@
         }
 
         h1 {
-            font-size: 1.8rem;
+            font-size: 2rem;
             color: #333;
             margin-bottom: 0.5rem;
         }
@@ -86,22 +86,23 @@
         }
 
         h2 {
-            font-size: 1.3rem;
+            font-size: 1.5rem;
             color: #333;
-            margin: 2rem 0 1rem 0;
+            margin: 2.5rem 0 1.5rem 0;
             border-left: 4px solid #FF8C00;
             padding-left: 1rem;
         }
 
         h3 {
-            font-size: 1.1rem;
+            font-size: 1.2rem;
             color: #333;
             margin: 1.5rem 0 0.8rem 0;
         }
 
-        p {
+        p, li {
             margin-bottom: 1rem;
             letter-spacing: 0.02em;
+            color: #444;
         }
 
         ul {
@@ -109,12 +110,18 @@
             padding-left: 2rem;
         }
 
-        li {
-            margin-bottom: 0.5rem;
+        strong {
+            font-weight: 600;
+            color: #222;
         }
 
-        strong {
+        a {
             color: #FF8C00;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         .back-button {
@@ -124,13 +131,12 @@
             padding: 0.8rem 2rem;
             border-radius: 50px;
             text-decoration: none;
-            font-weight: 400;
+            font-weight: 600;
             font-size: 0.9rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
             transition: all 0.3s ease;
             border: 2px solid #FF8C00;
             margin-bottom: 2rem;
-            letter-spacing: 0.02em;
         }
 
         .back-button:hover {
@@ -151,325 +157,92 @@
             body {
                 padding: 1rem 0.5rem;
             }
-
             .container {
                 padding: 1.5rem;
             }
-
             h1 {
-                font-size: 1.5rem;
+                font-size: 1.8rem;
             }
-
             h2 {
-                font-size: 1.2rem;
-            }
-        }
-
-        /* Language Switcher Styles */
-        .language-switcher {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .lang-button {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            background: white;
-            border: 2px solid #FF8C00;
-            border-radius: 25px;
-            padding: 8px 16px;
-            cursor: pointer;
-            font-family: 'Inter', system-ui, sans-serif;
-            font-size: 0.9rem;
-            font-weight: 500;
-            color: #333;
-            transition: all 0.3s ease;
-            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
-        }
-
-        .lang-button:hover {
-            background: #FFF8F0;
-            box-shadow: 0 4px 12px rgba(255, 140, 0, 0.2);
-            transform: translateY(-1px);
-        }
-
-        .lang-flag {
-            font-size: 1.2rem;
-            line-height: 1;
-        }
-
-        .lang-code {
-            font-weight: 600;
-            color: #FF8C00;
-        }
-
-        .lang-arrow {
-            font-size: 0.7rem;
-            color: #FF8C00;
-            transition: transform 0.3s ease;
-        }
-
-        .lang-button:hover .lang-arrow {
-            transform: translateY(2px);
-        }
-
-        .lang-dropdown {
-            position: absolute;
-            top: calc(100% + 8px);
-            right: 0;
-            background: white;
-            border: 2px solid #FF8C00;
-            border-radius: 12px;
-            min-width: 180px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-10px);
-            transition: all 0.3s ease;
-        }
-
-        .lang-dropdown.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .lang-option {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            text-decoration: none;
-            color: #333;
-            font-size: 0.9rem;
-            transition: all 0.2s ease;
-            border-bottom: 1px solid #f0f0f0;
-        }
-
-        .lang-option:last-child {
-            border-bottom: none;
-        }
-
-        .lang-option:hover {
-            background: #FFF8F0;
-            color: #FF8C00;
-        }
-
-        .lang-option:first-child {
-            border-radius: 10px 10px 0 0;
-        }
-
-        .lang-option:last-child {
-            border-radius: 0 0 10px 10px;
-        }
-
-        .lang-option .lang-flag {
-            font-size: 1.3rem;
-        }
-
-        @media (max-width: 768px) {
-            .language-switcher {
-                top: 15px;
-                right: 15px;
-            }
-
-            .lang-button {
-                padding: 6px 12px;
-                font-size: 0.85rem;
-            }
-
-            .lang-code {
-                display: none;
-            }
-
-            .lang-dropdown {
-                min-width: 150px;
-            }
-
-            .lang-option {
-                padding: 10px 14px;
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .language-switcher {
-                top: 10px;
-                right: 10px;
-            }
-
-            .lang-button {
-                padding: 5px 10px;
-            }
-
-            .lang-flag {
-                font-size: 1.1rem;
+                font-size: 1.3rem;
             }
         }
     </style>
 </head>
 <body>
-    <!-- Language Switcher -->
-    <div class="language-switcher">
-        <button class="lang-button" id="langButton" aria-label="Switch Language">
-            <span class="lang-flag" id="currentFlag">🇺🇸</span>
-            <span class="lang-code" id="currentLang">EN</span>
-            <span class="lang-arrow">▼</span>
-        </button>
-        <div class="lang-dropdown" id="langDropdown">
-            <a href="/privacy.html" class="lang-option" data-lang="en">
-                <span class="lang-flag">🇺🇸</span>
-                <span>English</span>
-            </a>
-            <a href="/zh-tw/privacy.html" class="lang-option" data-lang="zh-TW">
-                <span class="lang-flag">🇹🇼</span>
-                <span>繁體中文</span>
-            </a>
-        </div>
-    </div>
-
     <div class="container">
         <div class="header">
-            <img src="images/HotTea.svg" alt="HotTea Logo" class="logo">
-            <h1>HotTea Privacy Policy</h1>
-            <p class="update-date">Last Updated: September 2025</p>
+            <a href="index.html" title="Back to Home"><img src="images/HotTea.svg" alt="HotTea Logo" class="logo"></a>
+            <h1>Privacy Policy</h1>
+            <p class="update-date">Last Updated: October 16, 2025</p>
         </div>
 
         <a href="index.html" class="back-button">← Back to Home</a>
 
-        <h2>Overview</h2>
-        <p>HotTea is a Chrome browser extension committed to protecting user privacy. This policy explains how we handle user data.</p>
+        <p>Welcome to HotTea! We are committed to protecting your privacy. This Privacy Policy explains how we collect, use, and safeguard your information when you use our Chrome extension ("Service").</p>
 
-        <h2>Data Collection</h2>
-        <h3>Data We Collect</h3>
+        <h2>1. Information We Collect</h2>
+        <p>To provide and improve our Service, we collect the following information:</p>
+        
+        <h3>A. Information You Provide</h3>
         <ul>
-            <li><strong>Google Account Information</strong>: Email address and display name (via Google OAuth)</li>
-            <li><strong>Web Content</strong>: Current news page content read temporarily only when you click the extension button</li>
-            <li><strong>Usage Statistics</strong>: Daily usage count (stored locally)</li>
+            <li><strong>Feedback Information:</strong> If you choose to provide feedback upon uninstalling our extension, we may collect the reasons for uninstallation and any additional comments you provide. This helps us understand our users better and improve our product.</li>
         </ul>
 
-        <h3>Data We Do NOT Collect</h3>
+        <h3>B. Information Collected Automatically</h3>
         <ul>
-            <li>Browsing history</li>
-            <li>Passwords or sensitive credentials</li>
-            <li>Personal communications</li>
-            <li>Location information</li>
-            <li>Financial information</li>
+            <li><strong>Google User Information:</strong> To use our Service, you must log in with your Google account. We collect your <strong>email address</strong> and <strong>public profile name</strong> for authentication purposes. We do not access your Google password or any other personal data from your Google account.</li>
+            <li><strong>Service Usage Data:</strong> We automatically collect a unique, one-time token when you uninstall the extension to securely log the uninstall event. We may also collect your browser's user agent string to help us debug and improve compatibility.</li>
         </ul>
 
-        <h2>Data Usage</h2>
-        <p>Collected data is used only for:</p>
-        <ol>
-            <li>Authentication and user identification</li>
-            <li>AI conversation generation (news content transformation)</li>
-            <li>Usage quota management</li>
-        </ol>
-
-        <h2>Data Storage</h2>
+        <h3>C. Information We DO NOT Collect</h3>
+        <p>We believe in data minimization and only collect what is necessary. We want to be clear about what we <strong>do not</strong> collect:</p>
         <ul>
-            <li><strong>Local Storage</strong>: User settings and states are stored in the browser locally</li>
-            <li><strong>Temporary Processing</strong>: News content is processed temporarily only during conversation generation, never permanently stored</li>
-            <li><strong>No Server Storage</strong>: We do not store any personal data on our servers</li>
+            <li><strong>News Content:</strong> The content of the news articles you process is sent to the AI model for transformation but is <strong>never stored on our servers</strong>. It is processed ephemerally.</li>
+            <li><strong>Browsing History:</strong> HotTea does not track your browsing history or the websites you visit.</li>
+            <li><strong>Sensitive Personal Information:</strong> We do not collect any sensitive data, such as your password, financial information, or personal communications.</li>
         </ul>
 
-        <h2>Data Sharing</h2>
+        <h2>2. How We Use Your Information</h2>
+        <p>We use the information we collect for the following purposes:</p>
         <ul>
-            <li>We <strong>do NOT</strong> sell, trade, or transfer your personal data to third parties</li>
-            <li>News content is only sent to Google AI (Gemini) API for processing</li>
-            <li>All API communications use encrypted connections</li>
+            <li><strong>To Provide and Maintain the Service:</strong> To authenticate you as a user and manage your account.</li>
+            <li><strong>To Improve Our Service:</strong> To analyze uninstall feedback and usage data to understand what our users need and to improve HotTea's features and performance.</li>
+            <li><strong>To Communicate With You:</strong> If you contact us for support, we will use your email address to respond to your inquiries.</li>
         </ul>
 
-        <h2>Data Security</h2>
+        <h2>3. Data Sharing and Third Parties</h2>
+        <p>We do not sell or rent your personal data. We only share information with the following third-party services as essential parts of our Service:</p>
         <ul>
-            <li>Uses Google OAuth 2.0 for secure authentication</li>
-            <li>Does not store passwords or sensitive credentials</li>
-            <li>Follows Chrome extension security best practices</li>
+            <li><strong>Google:</strong> For authentication services (Google OAuth). Your interaction with Google login is governed by Google's Privacy Policy.</li>
+            <li><strong>Supabase:</strong> We use Supabase as our backend service provider to manage user authentication and store uninstall feedback data securely.</li>
+            <li><strong>Generative AI Provider:</strong> We send news article content to a generative AI model to provide the core functionality of our Service. This content is not linked to your personal account and is not stored after processing.</li>
         </ul>
 
-        <h2>User Rights</h2>
-        <p>You have the right to:</p>
+        <h2>4. Data Security</h2>
+        <p>We take the security of your data seriously and use appropriate measures to protect it. This includes using secure HTTPS connections for all data transmission and relying on trusted services like Google OAuth and Supabase for authentication and data storage.</p>
+
+        <h2>5. Your Data Rights</h2>
+        <p>You have control over your personal information. You have the right to:</p>
         <ul>
-            <li>Sign out and clear local data at any time</li>
-            <li>Stop using the extension</li>
-            <li>Request information about how we use your data</li>
+            <li><strong>Access and Update:</strong> You can access and update your Google account information through Google's services.</li>
+            <li><strong>Data Deletion:</strong> If you wish to delete your account information from our system, please contact us at <strong>support@hottea.app</strong>. We will process your request in accordance with applicable laws.</li>
+            <li><strong>Uninstall:</strong> You can stop all information collection by uninstalling the extension at any time.</li>
         </ul>
 
-        <h2>Children's Privacy</h2>
-        <p>HotTea is not designed for children under 13, and we do not knowingly collect personal information from children.</p>
+        <h2>6. Children's Privacy</h2>
+        <p>Our Service is not intended for children under the age of 13. We do not knowingly collect personal information from children. If we become aware that we have collected such information, we will take steps to delete it.</p>
 
-        <h2>Policy Changes</h2>
-        <p>If there are significant changes, we will notify users through the extension.</p>
+        <h2>7. Changes to This Privacy Policy</h2>
+        <p>We may update this Privacy Policy from time to time. We will notify you of any significant changes by posting the new policy on this page and, if applicable, through the extension. We encourage you to review this Privacy Policy periodically.</p>
 
-        <h2>Contact Us</h2>
-        <p>For any privacy-related questions, please contact:<br>
-        Email: support@hottea.app</p>
-
-        <h2>Terms of Consent</h2>
-        <p>By using HotTea, you agree to this privacy policy.</p>
+        <h2>8. Contact Us</h2>
+        <p>If you have any questions or concerns about this Privacy Policy, please contact us at:</p>
+        <p><strong>support@hottea.app</strong></p>
 
         <div class="footer">
             <p>© 2025 HotTea. All rights reserved.</p>
         </div>
     </div>
-
-    <script>
-        // Language Switcher Functionality
-        (function() {
-            const langButton = document.getElementById('langButton');
-            const langDropdown = document.getElementById('langDropdown');
-            const currentFlag = document.getElementById('currentFlag');
-            const currentLang = document.getElementById('currentLang');
-
-            // Detect current language from URL
-            function getCurrentLanguage() {
-                const path = window.location.pathname;
-                if (path.includes('/zh-tw/')) {
-                    return 'zh-TW';
-                }
-                return 'en';
-            }
-
-            // Update UI based on current language
-            function updateLanguageUI() {
-                const currentLanguage = getCurrentLanguage();
-                if (currentLanguage === 'zh-TW') {
-                    currentFlag.textContent = '🇹🇼';
-                    currentLang.textContent = '中文';
-                } else {
-                    currentFlag.textContent = '🇺🇸';
-                    currentLang.textContent = 'EN';
-                }
-            }
-
-            // Toggle dropdown
-            langButton.addEventListener('click', function(e) {
-                e.stopPropagation();
-                langDropdown.classList.toggle('active');
-            });
-
-            // Close dropdown when clicking outside
-            document.addEventListener('click', function(e) {
-                if (!langButton.contains(e.target) && !langDropdown.contains(e.target)) {
-                    langDropdown.classList.remove('active');
-                }
-            });
-
-            // Track language selection
-            const langOptions = document.querySelectorAll('.lang-option');
-            langOptions.forEach(option => {
-                option.addEventListener('click', function(e) {
-                    const selectedLang = this.getAttribute('data-lang');
-                    localStorage.setItem('preferredLanguage', selectedLang);
-                    console.log('Language switched to:', selectedLang);
-                });
-            });
-
-            // Initialize
-            updateLanguageUI();
-        })();
-    </script>
 </body>
 </html>
