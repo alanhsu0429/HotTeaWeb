@@ -1028,7 +1028,7 @@
         <!-- 互動式展示區塊 -->
         <div class="intro-video-section animated-component" id="intro">
             <h2 class="intro-title">認識 HotTea</h2>
-            <!--ARCADE EMBED START--><div style="position: relative; padding-bottom: calc(65.034% + 41px); height: 0px; width: 100%;"><iframe src="https://demo.arcade.software/km2ku3JaXxf82IK8Hmib?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Ask HotTea About SpaceX's Use of NVIDIA DGX Spark" frameborder="0" loading="lazy" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="clipboard-write" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; color-scheme: light;" ></iframe></div><!--ARCADE EMBED END-->
+            <!--ARCADE EMBED START--><div id="demo-video" style="position: relative; padding-bottom: calc(65.034% + 41px); height: 0px; width: 100%;"><iframe src="https://demo.arcade.software/km2ku3JaXxf82IK8Hmib?embed&embed_mobile=tab&embed_desktop=inline&show_copy_link=true" title="Ask HotTea About SpaceX's Use of NVIDIA DGX Spark" frameborder="0" loading="lazy" webkitallowfullscreen mozallowfullscreen allowfullscreen allow="clipboard-write" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; color-scheme: light;" ></iframe></div><!--ARCADE EMBED END-->
         </div>
 
         <!-- 內容區塊 -->
@@ -1142,6 +1142,24 @@
         document.addEventListener('keydown', function(e) {
             if (e.key === 'Enter' || e.key === ' ') {
                 document.querySelector('.cta-button').click();
+            }
+        });
+    </script>
+    <script>
+        // Smooth scroll to center demo video
+        document.addEventListener('DOMContentLoaded', () => {
+            const learnMoreButton = document.querySelector('a[href="#intro"]');
+            if (learnMoreButton) {
+                learnMoreButton.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    const demoVideo = document.querySelector('#demo-video');
+                    if (demoVideo) {
+                        demoVideo.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'center'
+                        });
+                    }
+                });
             }
         });
     </script>
